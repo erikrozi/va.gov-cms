@@ -128,16 +128,16 @@ class PreventAbsoluteUrlsAsPathsInLinksValidatorTest extends VaGovUnitTestBase {
   }
 
   /**
-   * Tests HTML with a path alias starting with /http triggers a violation.
+   * Tests HTML with a path alias starting with /http does NOT trigger.
    *
-   * Note: The validator's false-alarm check requires both //http: AND //https:
-   * to be present in the URL, so a path like /https-better-than-http still
-   * triggers a violation.
+   * The false-alarm guard correctly skips paths like /https-better-than-http
+   * because they contain //https: in the resolved URL, indicating a legitimate
+   * path alias rather than an absolute URL used as a path.
    *
    * @covers ::validateHtml
    */
-  public function testValidateHtmlWithPathAliasStartingWithHttp() {
-    $context = $this->createMockContextExpectingViolation();
+  public function testValidateHtmlWithPathAliasStartingWithHttpNoViolation() {
+    $context = $this->createMockContextExpectingNoViolation();
     $this->validator->setContext($context);
     $this->validator->validateHtml('<p><a href="/https-better-than-http">article</a></p>', $this->constraint, 0);
   }

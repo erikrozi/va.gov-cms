@@ -55,7 +55,9 @@ class PreventAbsoluteUrlsAsPathsInLinksValidator extends ConstraintValidator {
     foreach ($xpath->query('//a[starts-with(@href, "/http")]') as $element) {
       $url = $element->getAttribute('href');
       // False alarm!  Maybe page alias is `/https-better-than-http`!
-      if (strpos($url, '//http:') !== FALSE && strpos($url, '//https:') !== FALSE) {
+      // Only flag if the URL actually contains :// after the leading slash,
+      // which indicates an absolute URL was used as a path.
+      if (preg_match('#^/https?://#', $url) === 0) {
         continue;
       }
       $firstChild = $element->hasChildNodes() ? $element->childNodes[0] : NULL;
