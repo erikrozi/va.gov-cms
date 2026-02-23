@@ -1,0 +1,4 @@
+services:
+  va_gov_logging.logger:
+    class: Drupal\va_gov_logging\Logger\VaGovLogger
+    arguments: ['@logger.factory']

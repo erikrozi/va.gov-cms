@@ -1,0 +1,5 @@
+name: 'VA.gov Logging'
+type: module
+description: 'Standardized logging templates and helper utilities for VA.gov CMS integration engineers.'
+core_version_requirement: ^9 || ^10
+package: 'Custom'
