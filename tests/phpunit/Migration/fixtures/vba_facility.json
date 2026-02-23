@@ -1,0 +1,94 @@
+{
+  "data": [
+    {
+      "id": "vba_999",
+      "type": "va_facilities",
+      "attributes": {
+        "name": "Test VBA Regional Office",
+        "facilityType": "va_benefits_facility",
+        "classification": "Regional Benefit Office",
+        "website": "https://www.va.gov/test-vba-office/",
+        "lat": 38.9072,
+        "long": -77.0369,
+        "timeZone": "America/New_York",
+        "address": {
+          "physical": {
+            "address1": "1800 G Street NW",
+            "address2": "Suite 500",
+            "address3": null,
+            "city": "Washington",
+            "state": "DC",
+            "zip": "20006"
+          }
+        },
+        "phone": {
+          "main": "2025551000"
+        },
+        "hours": {
+          "monday": "8:00AM-4:30PM",
+          "tuesday": "8:00AM-4:30PM",
+          "wednesday": "8:00AM-4:30PM",
+          "thursday": "8:00AM-4:30PM",
+          "friday": "8:00AM-4:30PM",
+          "saturday": "Closed",
+          "sunday": "Closed"
+        },
+        "services": {
+          "benefits": [
+            "ApplyingForBenefits",
+            "BurialClaimAssistance",
+            "DisabilityClaimAssistance",
+            "EducationAndCareerCounseling",
+            "EducationClaimAssistance",
+            "HomelessAssistance",
+            "InsuranceClaimAssistanceAndFinancialCounseling",
+            "PreDischargeClaimAssistance",
+            "VAHomeLoanAssistance",
+            "VocationalRehabilitationAndEmploymentAssistance"
+          ]
+        },
+        "operatingStatus": {
+          "code": "NORMAL"
+        }
+      }
+    },
+    {
+      "_comment": "This facility should be skipped because it is not a va_benefits_facility.",
+      "id": "vha_888888",
+      "type": "va_facilities",
+      "attributes": {
+        "name": "Test Health Facility - Should Be Skipped",
+        "facilityType": "va_health_facility",
+        "classification": "Primary Care CBOC",
+        "lat": 39.0000,
+        "long": -76.0000,
+        "timeZone": "America/New_York",
+        "address": {
+          "physical": {
+            "address1": "100 Test Ave",
+            "address2": null,
+            "address3": null,
+            "city": "Baltimore",
+            "state": "MD",
+            "zip": "21201"
+          }
+        },
+        "phone": {
+          "main": "4105559999"
+        },
+        "hours": {
+          "monday": "8:00AM-4:30PM",
+          "tuesday": "8:00AM-4:30PM",
+          "wednesday": "8:00AM-4:30PM",
+          "thursday": "8:00AM-4:30PM",
+          "friday": "8:00AM-4:30PM",
+          "saturday": "Closed",
+          "sunday": "Closed"
+        },
+        "operatingStatus": {
+          "code": "NORMAL"
+        }
+      }
+    }
+  ]
+}

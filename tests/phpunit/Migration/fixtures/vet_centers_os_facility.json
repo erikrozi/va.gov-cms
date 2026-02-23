@@ -1,0 +1,71 @@
+{
+  "data": [
+    {
+      "id": "vc_0000OS",
+      "type": "va_facilities",
+      "attributes": {
+        "name": "Test Vet Center Outstation",
+        "facilityType": "vet_center",
+        "lat": 40.7128,
+        "long": -74.0060,
+        "timeZone": "America/New_York",
+        "address": {
+          "physical": {
+            "address1": "200 Liberty Street",
+            "address2": null,
+            "address3": null,
+            "city": "New York",
+            "state": "NY",
+            "zip": "10281"
+          }
+        },
+        "phone": {
+          "main": "2125559876"
+        },
+        "hours": {
+          "monday": "8:30am - 5:00pm",
+          "tuesday": "8:30am - 5:00pm",
+          "wednesday": "8:30am - 5:00pm",
+          "thursday": "8:30am - 5:00pm",
+          "friday": "8:30am - 4:00pm",
+          "saturday": "Closed",
+          "sunday": "Closed"
+        }
+      }
+    },
+    {
+      "_comment": "This facility should be skipped because its id does not contain OS.",
+      "id": "vc_0000Z",
+      "type": "va_facilities",
+      "attributes": {
+        "name": "Test Vet Center - Should Be Skipped",
+        "facilityType": "vet_center",
+        "lat": 38.8977,
+        "long": -77.0365,
+        "timeZone": "America/New_York",
+        "address": {
+          "physical": {
+            "address1": "1234 Freedom Rd",
+            "address2": null,
+            "address3": null,
+            "city": "Washington",
+            "state": "DC",
+            "zip": "20001"
+          }
+        },
+        "phone": {
+          "main": "2025551234"
+        },
+        "hours": {
+          "monday": "8:00am - 4:30pm",
+          "tuesday": "8:00am - 4:30pm",
+          "wednesday": "8:00am - 4:30pm",
+          "thursday": "8:00am - 4:30pm",
+          "friday": "8:00am - 4:30pm",
+          "saturday": "Closed",
+          "sunday": "Closed"
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "data": [
+    {
+      "id": "vba_999",
+      "type": "va_facilities",
+      "attributes": {
+        "name": "Test VBA Regional Office - Updated",
+        "facilityType": "va_benefits_facility",
+        "classification": "Regional Benefit Office",
+        "website": "https://www.va.gov/test-vba-office/",
+        "lat": 38.9072,
+        "long": -77.0369,
+        "timeZone": "America/New_York",
+        "address": {
+          "physical": {
+            "address1": "2000 Pennsylvania Ave NW",
+            "address2": "Floor 3",
+            "address3": null,
+            "city": "Washington",
+            "state": "DC",
+            "zip": "20006"
+          }
+        },
+        "phone": {
+          "main": "2025552000"
+        },
+        "hours": {
+          "monday": "8:00AM-5:00PM",
+          "tuesday": "8:00AM-5:00PM",
+          "wednesday": "8:00AM-5:00PM",
+          "thursday": "8:00AM-5:00PM",
+          "friday": "8:00AM-5:00PM",
+          "saturday": "Closed",
+          "sunday": "Closed"
+        },
+        "services": {
+          "benefits": [
+            "ApplyingForBenefits",
+            "BurialClaimAssistance",
+            "DisabilityClaimAssistance",
+            "EducationAndCareerCounseling",
+            "EducationClaimAssistance",
+            "HomelessAssistance",
+            "VAHomeLoanAssistance",
+            "VocationalRehabilitationAndEmploymentAssistance"
+          ]
+        },
+        "operatingStatus": {
+          "code": "NORMAL"
+        }
+      }
+    }
+  ]
+}

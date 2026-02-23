@@ -370,6 +370,7 @@ function va_gov_scheduled_tasks_0800() {
   va_gov_scheduled_tasks_0800_vba_facility();
   va_gov_scheduled_tasks_0800_nca_facility();
   va_gov_scheduled_tasks_0800_flag_removed_facilities();
+  va_gov_scheduled_tasks_validate_facility_migrations();
 }
 
 /**
@@ -378,9 +379,82 @@ function va_gov_scheduled_tasks_0800() {
 function va_gov_scheduled_tasks_daily() {
   va_gov_scheduled_tasks_download_forms_csv();
   va_gov_scheduled_tasks_validate_forms_csv();
+  va_gov_scheduled_tasks_validate_forms_csv_extended();
   va_gov_scheduled_tasks_run_migration('va_node_form', 'daily');
   va_gov_scheduled_tasks_archive_intranet_only_forms();
+  va_gov_scheduled_tasks_validate_forms_migration();
   va_gov_scheduled_tasks_run_drush_command('taxonomy_entity_index:rebuild');
+}
+
+/**
+ * Validates facility migration results after the 0800 migration runs.
+ */
+function va_gov_scheduled_tasks_validate_facility_migrations() {
+  \Drupal::logger('va_gov_scheduled_tasks')->info('Facility migration validation started.');
+  try {
+    /** @var \Drupal\va_gov_migrate\Service\MigrationValidationService $validator */
+    $validator = \Drupal::service('va_gov_migrate.migration_validation');
+    $all_valid = $validator->validateAllFacilityMigrations();
+    if (!$all_valid) {
+      \Drupal::logger('va_gov_scheduled_tasks')->error('Facility migration validation: one or more migrations have issues. Check va_gov_migrate logs.');
+    }
+  }
+  catch (\Exception $e) {
+    \Drupal::logger('va_gov_scheduled_tasks')->error('Facility migration validation failed: @message', [
+      '@message' => $e->getMessage(),
+    ]);
+  }
+  \Drupal::logger('va_gov_scheduled_tasks')->info('Facility migration validation completed.');
+}
+
+/**
+ * Extended forms CSV validation using MigrationValidationService.
+ */
+function va_gov_scheduled_tasks_validate_forms_csv_extended() {
+  \Drupal::logger('va_gov_scheduled_tasks')->info('Extended forms CSV validation started.');
+  try {
+    /** @var \Drupal\va_gov_migrate\Service\MigrationValidationService $validator */
+    $validator = \Drupal::service('va_gov_migrate.migration_validation');
+    $result = $validator->validateFormsCsv();
+    if (!$result['valid']) {
+      foreach ($result['errors'] as $error) {
+        \Drupal::logger('va_gov_scheduled_tasks')->error('Forms CSV validation: @error', ['@error' => $error]);
+      }
+    }
+    foreach ($result['warnings'] as $warning) {
+      \Drupal::logger('va_gov_scheduled_tasks')->warning('Forms CSV validation: @warning', ['@warning' => $warning]);
+    }
+    \Drupal::logger('va_gov_scheduled_tasks')->notice('Forms CSV validation: @count data rows found.', [
+      '@count' => $result['row_count'],
+    ]);
+  }
+  catch (\Exception $e) {
+    \Drupal::logger('va_gov_scheduled_tasks')->error('Extended forms CSV validation failed: @message', [
+      '@message' => $e->getMessage(),
+    ]);
+  }
+  \Drupal::logger('va_gov_scheduled_tasks')->info('Extended forms CSV validation completed.');
+}
+
+/**
+ * Validates the forms migration results after the daily migration run.
+ */
+function va_gov_scheduled_tasks_validate_forms_migration() {
+  \Drupal::logger('va_gov_scheduled_tasks')->info('Forms migration validation started.');
+  try {
+    /** @var \Drupal\va_gov_migrate\Service\MigrationValidationService $validator */
+    $validator = \Drupal::service('va_gov_migrate.migration_validation');
+    $valid = $validator->validateFormsMigration();
+    if (!$valid) {
+      \Drupal::logger('va_gov_scheduled_tasks')->error('Forms migration validation: migration has issues. Check va_gov_migrate logs.');
+    }
+  }
+  catch (\Exception $e) {
+    \Drupal::logger('va_gov_scheduled_tasks')->error('Forms migration validation failed: @message', [
+      '@message' => $e->getMessage(),
+    ]);
+  }
+  \Drupal::logger('va_gov_scheduled_tasks')->info('Forms migration validation completed.');
 }
 
 /**
